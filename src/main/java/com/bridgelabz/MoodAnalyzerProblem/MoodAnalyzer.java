@@ -3,14 +3,12 @@ package com.bridgelabz.MoodAnalyzerProblem;
 public class MoodAnalyzer {
 	
 	private String message; // Field to store the mood message
-
 	// Default constructor
-	public MoodAnalyzer() {
+	public MoodAnalyser() {
 		message = ""; // Set default empty message
 	}
-
 	// Constructor with message parameter
-	public MoodAnalyzer(String message) {
+	public MoodAnalyser(String message) {
 		this.message = message; // Set the message field with the passed parameter
 	}
 
@@ -19,10 +17,21 @@ public class MoodAnalyzer {
 		if (message.contains("Sad")) {
 			return "SAD";
 		} else {
+		try {
+			if (message == null || message.isEmpty()) {
+				throw new InvalidMoodException("Invalid mood: Mood message cannot be null or empty.");
+			} else if (message.contains("Sad")) {
+				return "SAD";
+			} else {
+				return "HAPPY";
+			}
+		} catch (InvalidMoodException e) {
+			// Handle the exception and return "HAPPY" as default value
+			System.out.println(e.getMessage());
 			return "HAPPY";
 		}
 	}
+	}
 }
- 
 
 
